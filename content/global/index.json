@@ -30,9 +30,8 @@
     }
   },
   "theme": {
-    "color": "blue",
-    "font": "sans",
-    "icon": "boxicon",
+    "color": "teal",
     "darkMode": "system"
   }
 }
+

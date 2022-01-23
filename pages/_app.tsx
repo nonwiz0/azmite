@@ -45,11 +45,11 @@ const App = ({ Component, pageProps }) => {
               /**
                * Only allows documents to be created to the `Blog Posts` Collection
                */
-              filterCollections: (options) => {
-                return options.filter(
-                  (option) => option.label === "Blog Posts"
-                );
-              },
+              /* filterCollections: (options) => { */
+              /*   return options.filter( */
+              /*     (option) => option.label === "Blog Posts" */
+              /*   ); */
+              /* }, */
             }}
             formifyCallback={({ formConfig, createForm, createGlobalForm }) => {
               if (formConfig.id === "getGlobalDocument") {

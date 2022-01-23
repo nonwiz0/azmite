@@ -72,7 +72,7 @@ type DocumentConnection implements Connection {
 type Collection {
   name: String!
   slug: String!
-  label: String!
+  label: String
   path: String!
   format: String
   matches: String
@@ -114,20 +114,12 @@ type PostsConnection implements Connection {
   edges: [PostsConnectionEdges]
 }
 
-type GlobalHeaderIcon {
-  color: String
-  style: String
-  name: String
-}
-
 type GlobalHeaderNav {
   href: String
   label: String
 }
 
 type GlobalHeader {
-  icon: GlobalHeaderIcon
-  color: String
   nav: [GlobalHeaderNav]
 }
 
@@ -139,14 +131,10 @@ type GlobalFooterSocial {
 }
 
 type GlobalFooter {
-  color: String
   social: GlobalFooterSocial
 }
 
 type GlobalTheme {
-  color: String
-  font: String
-  icon: String
   darkMode: String
 }
 
@@ -222,14 +210,7 @@ type PagesBlocksHero {
   color: String
 }
 
-type PagesBlocksFeaturesItemsIcon {
-  color: String
-  style: String
-  name: String
-}
-
 type PagesBlocksFeaturesItems {
-  icon: PagesBlocksFeaturesItemsIcon
   title: String
   text: String
 }
@@ -306,20 +287,12 @@ input PostsMutation {
   _body: JSON
 }
 
-input GlobalHeaderIconMutation {
-  color: String
-  style: String
-  name: String
-}
-
 input GlobalHeaderNavMutation {
   href: String
   label: String
 }
 
 input GlobalHeaderMutation {
-  icon: GlobalHeaderIconMutation
-  color: String
   nav: [GlobalHeaderNavMutation]
 }
 
@@ -331,14 +304,10 @@ input GlobalFooterSocialMutation {
 }
 
 input GlobalFooterMutation {
-  color: String
   social: GlobalFooterSocialMutation
 }
 
 input GlobalThemeMutation {
-  color: String
-  font: String
-  icon: String
   darkMode: String
 }
 
@@ -374,14 +343,7 @@ input PagesBlocksHeroMutation {
   color: String
 }
 
-input PagesBlocksFeaturesItemsIconMutation {
-  color: String
-  style: String
-  name: String
-}
-
 input PagesBlocksFeaturesItemsMutation {
-  icon: PagesBlocksFeaturesItemsIconMutation
   title: String
   text: String
 }

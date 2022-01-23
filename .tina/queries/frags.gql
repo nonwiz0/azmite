@@ -2,19 +2,12 @@ fragment LayoutQueryFragment on Query {
   getGlobalDocument(relativePath: "index.json") {
     data {
       header {
-        icon {
-          name
-          color
-          style
-        }
-        color
         nav {
           href
           label
         }
       }
       footer {
-        color
         social {
           facebook
           twitter
@@ -23,9 +16,6 @@ fragment LayoutQueryFragment on Query {
         }
       }
       theme {
-        color
-        icon
-        font
         darkMode
       }
     }

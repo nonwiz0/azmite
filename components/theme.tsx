@@ -47,8 +47,6 @@ export const Theme = ({ data, children }) => {
 
   const {
     color = "blue",
-    icon = "boxicon",
-    font = "sans",
     darkMode = "system",
   } = data;
 
@@ -66,8 +64,6 @@ export const Theme = ({ data, children }) => {
     <ThemeContext.Provider
       value={{
         color,
-        icon,
-        font,
         darkMode,
       }}
     >
