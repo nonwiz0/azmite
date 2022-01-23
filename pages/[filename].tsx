@@ -1,5 +1,7 @@
 import { Blocks } from "../components/blocks";
 import { ExperimentalGetTinaClient } from "../.tina/__generated__/types";
+import { promises as fs } from 'fs'
+import path from 'path'
 
 export default function HomePage(
   props: AsyncReturnType<typeof getStaticProps>["props"]
@@ -20,6 +22,7 @@ export const getStaticProps = async ({ params }) => {
 };
 
 export const getStaticPaths = async () => {
+  console.log(path, process.cwd())
   const client = ExperimentalGetTinaClient();
   const pagesListData = await client.getPagesList();
   return {

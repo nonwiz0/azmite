@@ -15,7 +15,7 @@ export const Layout = ({ rawData = "", data = layoutData, children }) => {
 
       </Head>
       <Theme data={data?.theme}>
-        <div className="font-sans hp-rpc">
+        <div className="font-sans hp-rpc bg-stone-50">
           <Header data={data?.header} />
           <main>
             {children}
