@@ -1,14 +1,8 @@
 import React from "react";
 import Link from "next/link";
-import { Container } from "./container";
-// @ts-ignore
-import TinaIconSvg from "../public/tina.svg";
-import { ThemeContext } from "./theme";
-import { Icon } from "./icon";
+import { Popover, Transition } from "@headlessui/react";
 
 export const Header = ({ data }) => {
-  const theme = React.useContext(ThemeContext);
-
   // If we're on an admin path, other links should also link to their admin paths
   const [prefix, setPrefix] = React.useState("");
   const [windowUrl, setUrl] = React.useState("");
@@ -26,42 +20,47 @@ export const Header = ({ data }) => {
   });
 
   return (
-      <Container className="relative z-10 py-0 max-w-8xl">
-        <div className="flex items-center justify-between">
-          <h4 className="my-4 text-lg font-bold tracking-tight select-none transition duration-150 ease-out transform">
-            <Link href="/" passHref>
-              <a className="flex items-center">
-                   Tina Starter
-              </a>
-            </Link>
-          </h4>
-          <ul className="flex gap-6 sm:gap-8 lg:gap-10">
-            {data.nav &&
-              data.nav.map((item, i) => {
-                const activeItem =
-                  item.href === ""
-                    ? typeof location !== "undefined" &&
-                      location.pathname == "/"
-                    : windowUrl.includes(item.href);
-                return (
-                  <li
-                    key={`${item.label}-${i}`}
-                  >
-                    <Link href={`${prefix}/${item.href}`} passHref>
-                      <a className="inline-block py-8 text-base tracking-wide select-none font-regular transition duration-150 ease-out opacity-70 hover:opacity-100">
-                        {item.label}
-                      </a>
-                    </Link>
-                  </li>
-                );
-              })}
-          </ul>
-        </div>
-        <div
-          className={`absolute h-1 bg-gradient-to-r from-transparent ${
-            data.color === "primary" ? `via-white` : `via-black dark:via-white`
-          } to-transparent bottom-0 left-4 right-4 -z-1 opacity-5`}
-        ></div>
-      </Container>
+    <div className="flex flex-row justify-between p-4">
+      <div className="flex flex-row">
+        <img className="h-10 w-15" src={`/assets/logo.png`} />
+        <img
+          className="h-10 p-1 w-15 sm:h10 transform scale-150 translate-x-5 -translate-y-2"
+          src={`/assets/logo_text.png`}
+        />
+      </div>
+      <div className="flex flex-row justify-center pt-2 gap-8">
+        <a> Home </a>
+        <Popover className="relative">
+          {({ open }) => (
+            <>
+              <Popover.Button>Posts</Popover.Button>
+              <Transition
+                show={open}
+                enter="transition duration-100 ease-out"
+                enterFrom="transform scale-95 opacity-0"
+                enterTo="transform scale-100 opacity-100"
+                leave="transition duration-75 ease-out"
+                leaveFrom="transform scale-100 opacity-100"
+                leaveTo="transform scale-95 opacity-0"
+              >
+                <Popover.Panel className="absolute inset-x-0 top-0 w-screen mt-8 bg-teal-500">
+                  {({ close }) => (
+                    <>
+                      <button onClick={() => close()}>Close</button>
+
+                      <div className="bg-rose-500">Testing</div>
+                    </>
+                  )}
+                </Popover.Panel>
+              </Transition>
+            </>
+          )}
+        </Popover>
+
+        <a> About </a>
+      </div>
+
+      <div> Menu </div>
+    </div>
   );
 };

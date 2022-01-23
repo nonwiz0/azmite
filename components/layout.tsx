@@ -9,15 +9,17 @@ export const Layout = ({ rawData = "", data = layoutData, children }) => {
   return (
     <>
       <Head>
-        <title>Tina</title>
+        <title>Azmo</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+
       </Head>
       <Theme data={data?.theme}>
-        <div>
+        <div className="font-sans hp-rpc">
           <Header data={data?.header} />
-          <div className="flex flex-col flex-1 text-gray-800 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900">
+          <main>
             {children}
-          </div>
+          </main>
           <Footer
             rawData={rawData}
             data={data?.footer}
