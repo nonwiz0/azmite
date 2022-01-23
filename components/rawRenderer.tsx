@@ -4,18 +4,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { ThemeContext } from "./theme";
 
 export const RawRenderer = ({ rawData, parentColor }) => {
-  const theme = React.useContext(ThemeContext);
-  const buttonColorClasses = {
-    blue: "text-blue-500",
-    teal: "text-teal-500",
-    green: "text-green-500",
-    red: "text-red-500",
-    pink: "text-pink-500",
-    purple: "text-purple-500",
-    orange: "text-orange-500",
-    yellow: "text-yellow-600",
-  };
-  let [isOpen, setIsOpen] = useState(false);
+ let [isOpen, setIsOpen] = useState(false);
 
   function closeModal() {
     setIsOpen(false);
@@ -30,18 +19,8 @@ export const RawRenderer = ({ rawData, parentColor }) => {
       <button
         type="button"
         onClick={openModal}
-        className={`z-10 relative flex items-center px-5 py-2 mx-3 my-2 font-semibold shadow-sm text-sm transition duration-150 ease-out rounded transform focus:shadow-outline focus:outline-none whitespace-nowrap opacity-80 hover:opacity-100 shadow-md ${
-          buttonColorClasses[theme.color]
-        }`}
-      >
-        View Raw Data
-        <span
-          className={`absolute w-full h-full left-0 top-0 rounded -z-1 ${
-            parentColor === "primary"
-              ? `bg-white opacity-80`
-              : `bg-current opacity-15`
-          }`}
-        ></span>
+        className={`bg-stone-700 text-white z-10 relative flex items-center px-5 py-2 mx-3 my-2 font-semibold shadow-sm text-sm transition duration-150 ease-out rounded transform focus:shadow-outline focus:outline-none whitespace-nowrap opacity-80 hover:opacity-100 shadow-md`}>
+                  View Raw Data
       </button>
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
@@ -49,7 +28,7 @@ export const RawRenderer = ({ rawData, parentColor }) => {
           className="fixed inset-0 z-10 overflow-y-auto"
           onClose={closeModal}
         >
-          <div className="min-h-screen max-h-screen px-4 py-12 text-center flex flex-col items-center justify-center">
+          <div className="flex flex-col items-center justify-center max-h-screen min-h-screen px-4 py-12 text-center">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -73,13 +52,13 @@ export const RawRenderer = ({ rawData, parentColor }) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <div className="flex-1 w-full prose dark:prose-dark max-w-3xl p-6 overflow-hidden text-left align-middle transition-all transform bg-white dark:bg-gray-1000 shadow-xl rounded-xl inline-flex flex-col max-h-full">
+              <div className="inline-flex flex-col flex-1 w-full max-w-3xl max-h-full p-6 overflow-hidden text-left align-middle bg-white shadow-xl prose dark:prose-dark transition-all transform dark:bg-gray-1000 rounded-xl">
                 <pre className="flex-1 overflow-y-auto">
                   <code>{JSON.stringify(rawData, null, 2)}</code>
                 </pre>
                 <button
                   type="button"
-                  className="flex-0 font-semibold text-lg transition duration-150 ease-out opacity-80 hover:opacity-100"
+                  className="text-lg font-semibold flex-0 transition duration-150 ease-out opacity-80 hover:opacity-100"
                   onClick={closeModal}
                 >
                   Great, thanks!
