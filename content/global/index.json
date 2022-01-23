@@ -1,4 +1,13 @@
 {
+  "extra": {
+    "verse": {
+      "body": "Let Love and Kindness be the motivation behind all that you do",
+      "author": "1 Corinthians 16:14"
+    },
+    "email": "mailto:angelaura9629@gmail.com",
+    "donate": "https://paypal.me/azlasorubou83?country.x=MY&locale.x=en_US"
+  },
+
   "header": {
     "icon": {
       "color": "orange",
@@ -6,27 +15,47 @@
       "name": "tina"
     },
     "color": "default",
+    "posts": [
+      {
+        "href": "/posts?type=blog",
+        "label": "Blog"
+      },
+      {
+        "href": "/posts?type=vlog",
+        "label": "Vlog"
+      },
+      {
+        "href": "/posts?type=storybook",
+        "label": "Storybook"
+      },
+      {
+        "href": "/posts?type=collection",
+        "label": "Collection"
+      }
+    ],
     "nav": [
       {
-        "href": "",
-        "label": "Home"
+        "href": "about_us",
+        "label": "Who are we"
       },
       {
-        "href": "about",
-        "label": "About"
+        "href": "/privacy_policy",
+        "label": "Privacy Policy"
       },
       {
-        "href": "posts",
-        "label": "Blog"
+        "href": "roadmap",
+        "label": "Roadmap"
       }
     ]
   },
   "footer": {
     "color": "default",
     "social": {
-      "facebook": "/",
-      "twitter": "/",
-      "instagram": "/"
+      "facebook": "",
+      "twitter": "https://twitter.com/AzmoCherish",
+      "instagram": "https://www.instagram.com/azmo.page/",
+      "pinterest": "https://pinterest.com/Azlasorubou",
+      "gmail": "mailto:angelaura9629@gmail.com"
     }
   },
   "theme": {
@@ -34,4 +63,3 @@
     "darkMode": "system"
   }
 }
-

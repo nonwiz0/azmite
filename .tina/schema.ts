@@ -2,63 +2,48 @@ import { defineSchema } from "@tinacms/cli";
 import type { TinaTemplate, TinaField } from "@tinacms/cli";
 
 
-const defaultFeature = {
-  title: "Here's Another Feature",
-  text: "This is where you might talk about the feature, if this wasn't just filler text.",
-  icon: {
-    color: "",
-    style: "float",
-    name: "",
+const socialBlockSchema: TinaTemplate = {
+  name: "social",
+  label: "Social Media - Detail",
+  ui: {
+    defaultItem: {},
   },
+  fields: [
+    {
+      type: "string",
+      label: "Title",
+      name: "title",
+    },
+    {
+      type: "string",
+      label: "description",
+      name: "description",
+    },
+    {
+      type: "image",
+      label: "Image",
+      name: "socialImg",
+    },
+  ],
 };
 
-const featureBlockShema: TinaTemplate = {
-  name: "features",
-  label: "Features",
+const verseBlockSchema: TinaTemplate = {
+  name: "verseblock",
+  label: "Bible Verse",
   ui: {
     defaultItem: {
-      items: [defaultFeature, defaultFeature, defaultFeature],
+      null: "You dont need to edit here",
     },
   },
   fields: [
     {
-      type: "object",
-      label: "Feature Items",
-      name: "items",
-      list: true,
-      ui: {
-        defaultItem: {
-          ...defaultFeature,
-        },
-      },
-      fields: [
-        {
-          type: "string",
-          label: "Title",
-          name: "title",
-        },
-        {
-          type: "string",
-          label: "Text",
-          name: "text",
-          ui: {
-            component: "textarea",
-          },
-        },
-      ],
-    },
-    {
       type: "string",
-      label: "Color",
-      name: "color",
-      options: [
-        { label: "Default", value: "default" },
-        { label: "Tint", value: "tint" },
-        { label: "Primary", value: "primary" },
-      ],
+      label: "Null",
+      name: "null",
     },
   ],
 };
+
 
 const contentBlockSchema: TinaTemplate = {
   name: "content",
@@ -73,140 +58,6 @@ const contentBlockSchema: TinaTemplate = {
       type: "rich-text",
       label: "Body",
       name: "body",
-    },
-    {
-      type: "string",
-      label: "Color",
-      name: "color",
-      options: [
-        { label: "Default", value: "default" },
-        { label: "Tint", value: "tint" },
-        { label: "Primary", value: "primary" },
-      ],
-    },
-  ],
-};
-
-const testimonialBlockSchema: TinaTemplate = {
-  name: "testimonial",
-  label: "Testimonial",
-  ui: {
-    defaultItem: {
-      quote:
-        "There are only two hard things in Computer Science: cache invalidation and naming things.",
-      author: "Phil Karlton",
-      color: "primary",
-    },
-  },
-  fields: [
-    {
-      type: "string",
-      ui: {
-        component: "textarea",
-      },
-      label: "Quote",
-      name: "quote",
-    },
-    {
-      type: "string",
-      label: "Author",
-      name: "author",
-    },
-    {
-      type: "string",
-      label: "Color",
-      name: "color",
-      options: [
-        { label: "Default", value: "default" },
-        { label: "Tint", value: "tint" },
-        { label: "Primary", value: "primary" },
-      ],
-    },
-  ],
-};
-
-const heroBlockSchema: TinaTemplate = {
-  name: "hero",
-  label: "Hero",
-  ui: {
-    defaultItem: {
-      tagline: "Here's some text above the other text",
-      headline: "This Big Text is Totally Awesome",
-      text: "Phasellus scelerisque, libero eu finibus rutrum, risus risus accumsan libero, nec molestie urna dui a leo.",
-    },
-  },
-  fields: [
-    {
-      type: "string",
-      label: "Tagline",
-      name: "tagline",
-    },
-    {
-      type: "string",
-      label: "Headline",
-      name: "headline",
-    },
-    {
-      label: "Text",
-      name: "text",
-      type: "rich-text",
-    },
-    {
-      label: "Actions",
-      name: "actions",
-      type: "object",
-      list: true,
-      ui: {
-        defaultItem: {
-          label: "Action Label",
-          type: "button",
-          icon: true,
-          link: "/",
-        },
-      },
-      fields: [
-        {
-          label: "Label",
-          name: "label",
-          type: "string",
-        },
-        {
-          label: "Type",
-          name: "type",
-          type: "string",
-          options: [
-            { label: "Button", value: "button" },
-            { label: "Link", value: "link" },
-          ],
-        },
-        {
-          label: "Icon",
-          name: "icon",
-          type: "boolean",
-        },
-        {
-          label: "Link",
-          name: "link",
-          type: "string",
-        },
-      ],
-    },
-    {
-      type: "object",
-      label: "Image",
-      name: "image",
-      fields: [
-        {
-          name: "src",
-          label: "Image Source",
-          type: "image",
-        },
-        {
-          name: "alt",
-          label: "Alt Text",
-          type: "string",
-        },
-      ],
     },
     {
       type: "string",
@@ -336,6 +187,41 @@ export default defineSchema({
       path: "content/global",
       format: "json",
       fields: [
+         {
+          label: "Bible Verse & Extra",
+          type: "object",
+          name: "extra",
+          fields: [
+            {
+              type: "object",
+              label: "Bible Verse",
+              name: "verse",
+              fields: [
+                {
+                  type: "string",
+                  label: "Text",
+                  name: "body",
+                },
+                {
+                  type: "string",
+                  label: "Author",
+                  name: "author",
+                },
+              ],
+            },
+            {
+              type: "string",
+              label: "Email",
+              name: "email",
+            },
+            {
+              type: "string",
+              label: "Donate",
+              name: "donate",
+            },
+          ],
+        },
+
         {
           type: "object",
           label: "Header",
@@ -343,7 +229,32 @@ export default defineSchema({
           fields: [
              {
               type: "object",
-              label: "Nav Links",
+              label: "Posts Dropdown Links",
+              name: "posts",
+              list: true,
+              ui: {
+                defaultItem: {
+                  href: "blog",
+                  label: "Blog",
+                },
+              },
+              fields: [
+                {
+                  type: "string",
+                  label: "Link",
+                  name: "href",
+                },
+                {
+                  type: "string",
+                  label: "Label",
+                  name: "label",
+                },
+              ],
+            },
+
+             {
+              type: "object",
+              label: "About Dropdown Links",
               name: "nav",
               list: true,
               ui: {
@@ -377,7 +288,7 @@ export default defineSchema({
               label: "Social Links",
               name: "social",
               fields: [
-                {
+                     {
                   type: "string",
                   label: "Facebook",
                   name: "facebook",
@@ -394,9 +305,21 @@ export default defineSchema({
                 },
                 {
                   type: "string",
+                  label: "Pinterest",
+                  name: "pinterest",
+                },
+                {
+                  type: "string",
+                  label: "Gmail",
+                  name: "gmail",
+                },
+
+                {
+                  type: "string",
                   label: "Github",
                   name: "github",
                 },
+
               ],
             },
           ],
@@ -457,10 +380,9 @@ export default defineSchema({
           name: "blocks",
           label: "Sections",
           templates: [
-            heroBlockSchema,
-            featureBlockShema,
+            socialBlockSchema,
+            verseBlockSchema,
             contentBlockSchema,
-            testimonialBlockSchema,
           ],
         },
       ],

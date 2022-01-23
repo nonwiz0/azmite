@@ -12,8 +12,23 @@ fragment PostsParts on Posts {
 }
 
 fragment GlobalParts on Global {
+  extra {
+    __typename
+    verse {
+      __typename
+      body
+      author
+    }
+    email
+    donate
+  }
   header {
     __typename
+    posts {
+      __typename
+      href
+      label
+    }
     nav {
       __typename
       href
@@ -27,6 +42,8 @@ fragment GlobalParts on Global {
       facebook
       twitter
       instagram
+      pinterest
+      gmail
       github
     }
   }
@@ -44,39 +61,16 @@ fragment AuthorsParts on Authors {
 fragment PagesParts on Pages {
   blocks {
     __typename
-    ... on PagesBlocksHero {
-      tagline
-      headline
-      text
-      actions {
-        __typename
-        label
-        type
-        icon
-        link
-      }
-      image {
-        __typename
-        src
-        alt
-      }
-      color
+    ... on PagesBlocksSocial {
+      title
+      description
+      socialImg
     }
-    ... on PagesBlocksFeatures {
-      items {
-        __typename
-        title
-        text
-      }
-      color
+    ... on PagesBlocksVerseblock {
+      null
     }
     ... on PagesBlocksContent {
       body
-      color
-    }
-    ... on PagesBlocksTestimonial {
-      quote
-      author
       color
     }
   }

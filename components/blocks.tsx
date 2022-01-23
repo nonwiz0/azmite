@@ -1,9 +1,8 @@
 import React from "react";
 import type { Pages } from "../.tina/__generated__/types";
 import { Content } from "./blocks/content";
-import { Features } from "./blocks/features";
-import { Hero } from "./blocks/hero";
-import { Testimonial } from "./blocks/testimonial";
+import { Verse } from "./blocks/verse";
+import { Social } from "./blocks/social";
 
 export const Blocks = (props: Pages) => {
   return (
@@ -11,6 +10,25 @@ export const Blocks = (props: Pages) => {
       {props.blocks
         ? props.blocks.map(function (block, i) {
             switch (block.__typename) {
+              case "PagesBlocksVerseblock":
+                return (
+                  <div
+                    data-tinafield={`blocks.${i}`}
+                    key={i + block.__typename}
+                  >
+                    <Verse />
+                  </div>
+                );
+              case "PagesBlocksSocial":
+                return (
+                  <div
+                    data-tinafield={`blocks.${i}`}
+                    key={i + block.__typename}
+                  >
+                    <Social data={block} />
+                  </div>
+                );
+
               case "PagesBlocksContent":
                 return (
                   <div
@@ -20,34 +38,7 @@ export const Blocks = (props: Pages) => {
                     <Content data={block} parentField={`blocks.${i}`} />
                   </div>
                 );
-              case "PagesBlocksHero":
-                return (
-                  <div
-                    data-tinafield={`blocks.${i}`}
-                    key={i + block.__typename}
-                  >
-                    <Hero data={block} parentField={`blocks.${i}`} />
-                  </div>
-                );
-              case "PagesBlocksFeatures":
-                return (
-                  <div
-                    data-tinafield={`blocks.${i}`}
-                    key={i + block.__typename}
-                  >
-                    <Features data={block} parentField={`blocks.${i}`} />
-                  </div>
-                );
-              case "PagesBlocksTestimonial":
-                return (
-                  <div
-                    data-tinafield={`blocks.${i}`}
-                    key={i + block.__typename}
-                  >
-                    <Testimonial data={block} parentField={`blocks.${i}`} />
-                  </div>
-                );
-              default:
+             default:
                 return null;
             }
           })

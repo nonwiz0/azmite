@@ -114,12 +114,29 @@ type PostsConnection implements Connection {
   edges: [PostsConnectionEdges]
 }
 
+type GlobalExtraVerse {
+  body: String
+  author: String
+}
+
+type GlobalExtra {
+  verse: GlobalExtraVerse
+  email: String
+  donate: String
+}
+
+type GlobalHeaderPosts {
+  href: String
+  label: String
+}
+
 type GlobalHeaderNav {
   href: String
   label: String
 }
 
 type GlobalHeader {
+  posts: [GlobalHeaderPosts]
   nav: [GlobalHeaderNav]
 }
 
@@ -127,6 +144,8 @@ type GlobalFooterSocial {
   facebook: String
   twitter: String
   instagram: String
+  pinterest: String
+  gmail: String
   github: String
 }
 
@@ -139,6 +158,7 @@ type GlobalTheme {
 }
 
 type Global {
+  extra: GlobalExtra
   header: GlobalHeader
   footer: GlobalFooter
   theme: GlobalTheme
@@ -189,35 +209,14 @@ type AuthorsConnection implements Connection {
   edges: [AuthorsConnectionEdges]
 }
 
-type PagesBlocksHeroActions {
-  label: String
-  type: String
-  icon: Boolean
-  link: String
-}
-
-type PagesBlocksHeroImage {
-  src: String
-  alt: String
-}
-
-type PagesBlocksHero {
-  tagline: String
-  headline: String
-  text: JSON
-  actions: [PagesBlocksHeroActions]
-  image: PagesBlocksHeroImage
-  color: String
-}
-
-type PagesBlocksFeaturesItems {
+type PagesBlocksSocial {
   title: String
-  text: String
+  description: String
+  socialImg: String
 }
 
-type PagesBlocksFeatures {
-  items: [PagesBlocksFeaturesItems]
-  color: String
+type PagesBlocksVerseblock {
+  null: String
 }
 
 type PagesBlocksContent {
@@ -225,13 +224,7 @@ type PagesBlocksContent {
   color: String
 }
 
-type PagesBlocksTestimonial {
-  quote: String
-  author: String
-  color: String
-}
-
-union PagesBlocks = PagesBlocksHero | PagesBlocksFeatures | PagesBlocksContent | PagesBlocksTestimonial
+union PagesBlocks = PagesBlocksSocial | PagesBlocksVerseblock | PagesBlocksContent
 
 type Pages {
   blocks: [PagesBlocks]
@@ -287,12 +280,29 @@ input PostsMutation {
   _body: JSON
 }
 
+input GlobalExtraVerseMutation {
+  body: String
+  author: String
+}
+
+input GlobalExtraMutation {
+  verse: GlobalExtraVerseMutation
+  email: String
+  donate: String
+}
+
+input GlobalHeaderPostsMutation {
+  href: String
+  label: String
+}
+
 input GlobalHeaderNavMutation {
   href: String
   label: String
 }
 
 input GlobalHeaderMutation {
+  posts: [GlobalHeaderPostsMutation]
   nav: [GlobalHeaderNavMutation]
 }
 
@@ -300,6 +310,8 @@ input GlobalFooterSocialMutation {
   facebook: String
   twitter: String
   instagram: String
+  pinterest: String
+  gmail: String
   github: String
 }
 
@@ -312,6 +324,7 @@ input GlobalThemeMutation {
 }
 
 input GlobalMutation {
+  extra: GlobalExtraMutation
   header: GlobalHeaderMutation
   footer: GlobalFooterMutation
   theme: GlobalThemeMutation
@@ -322,35 +335,14 @@ input AuthorsMutation {
   avatar: String
 }
 
-input PagesBlocksHeroActionsMutation {
-  label: String
-  type: String
-  icon: Boolean
-  link: String
-}
-
-input PagesBlocksHeroImageMutation {
-  src: String
-  alt: String
-}
-
-input PagesBlocksHeroMutation {
-  tagline: String
-  headline: String
-  text: JSON
-  actions: [PagesBlocksHeroActionsMutation]
-  image: PagesBlocksHeroImageMutation
-  color: String
-}
-
-input PagesBlocksFeaturesItemsMutation {
+input PagesBlocksSocialMutation {
   title: String
-  text: String
+  description: String
+  socialImg: String
 }
 
-input PagesBlocksFeaturesMutation {
-  items: [PagesBlocksFeaturesItemsMutation]
-  color: String
+input PagesBlocksVerseblockMutation {
+  null: String
 }
 
 input PagesBlocksContentMutation {
@@ -358,17 +350,10 @@ input PagesBlocksContentMutation {
   color: String
 }
 
-input PagesBlocksTestimonialMutation {
-  quote: String
-  author: String
-  color: String
-}
-
 input PagesBlocksMutation {
-  hero: PagesBlocksHeroMutation
-  features: PagesBlocksFeaturesMutation
+  social: PagesBlocksSocialMutation
+  verseblock: PagesBlocksVerseblockMutation
   content: PagesBlocksContentMutation
-  testimonial: PagesBlocksTestimonialMutation
 }
 
 input PagesMutation {
